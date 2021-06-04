@@ -1,0 +1,59 @@
+{
+  "version": 2,
+  "cli": {
+    "defaultCollection": "@nrwl/express"
+  },
+  "defaultProject": "socket-server-01",
+  "projects": {
+    "socket-server-01": {
+      "root": "apps/socket-server-01",
+      "sourceRoot": "apps/socket-server-01/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/socket-server-01",
+            "main": "apps/socket-server-01/src/main.ts",
+            "tsConfig": "apps/socket-server-01/tsconfig.app.json",
+            "assets": ["apps/socket-server-01/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/socket-server-01/src/environments/environment.ts",
+                  "with": "apps/socket-server-01/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "socket-server-01:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/socket-server-01/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/socket-server-01"],
+          "options": {
+            "jestConfig": "apps/socket-server-01/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  }
+}

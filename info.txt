@@ -1,0 +1,50 @@
+npx nx e2e todos-e2e --watch
+npx nx e2e todos-e2e --headless
+npx nx list
+npx nx list @nrwl/nest
+
+npx nx serve api to serve the application
+npx nx build api to build the application
+npx nx test api to test the application
+
+npx nx serve todos
+npx nx serve api
+
+npx nx g @nrwl/workspace:lib data
+
+npx nx g @nrwl/angular:lib ui
+npx nx g component todos --project=ui --export
+
+npx nx g @nrwl/angular:component containers/login --project=auth
+npx nx g @nrwl/angular:service services/auth/auth
+
+npm run dep-graph
+
+npx nx run todos:build
+npx nx run-many --target=build --projects=todos,api
+
+nx lint todos --with-deps
+
+npm run affected:apps
+npm run affected:libs
+
+# The following are equivalent
+npx nx affected --target=build
+npx nx affected:build
+
+nx migrate latest
+
+nx generate @nrwl/angular:lib products --routing --lazy --parent-module=apps/restaurant/src/app/app-routing.module.ts
+npx nx g @nrwl/angular:component containers/products --project=products --prefix dc
+
+
+nx generate @nrwl/angular:component button --project=dc-ui
+nx run dc-ui:test --codeCoverage
+npm run affected:test -- --all --codeCoverage
+nx g @nrwl/angular:storybook-configuration dc-ui
+nx run dc-ui:storybook
+nx run dc-ui-e2e:e2e
+
+
+--------------------------------
+nx serve socket-serve-01
