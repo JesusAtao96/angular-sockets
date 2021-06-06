@@ -16,7 +16,7 @@ Levantar Server Express 01
 nx serve socket-server-01
 ```
 
-Levantar Server Angular Basico
+Levantar Server Angular Básico
 ```
 nx serve basico
 ```
