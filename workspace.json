@@ -4,6 +4,22 @@
     "defaultCollection": "@nrwl/express"
   },
   "defaultProject": "socket-server-01",
+  "generators": {
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
   "projects": {
     "socket-server-01": {
       "root": "apps/socket-server-01",
@@ -12,12 +28,16 @@
       "targets": {
         "build": {
           "executor": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/socket-server-01",
             "main": "apps/socket-server-01/src/main.ts",
             "tsConfig": "apps/socket-server-01/tsconfig.app.json",
-            "assets": ["apps/socket-server-01/src/assets"]
+            "assets": [
+              "apps/socket-server-01/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -42,15 +62,147 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/socket-server-01/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/socket-server-01/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/socket-server-01"],
+          "outputs": [
+            "coverage/apps/socket-server-01"
+          ],
           "options": {
             "jestConfig": "apps/socket-server-01/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "basico": {
+      "projectType": "application",
+      "root": "apps/basico",
+      "sourceRoot": "apps/basico/src",
+      "prefix": "angular-sockets",
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:browser",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/basico",
+            "index": "apps/basico/src/index.html",
+            "main": "apps/basico/src/main.ts",
+            "polyfills": "apps/basico/src/polyfills.ts",
+            "tsConfig": "apps/basico/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/basico/src/favicon.ico",
+              "apps/basico/src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "apps/basico/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/basico/src/environments/environment.ts",
+                  "with": "apps/basico/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "executor": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "basico:build:production"
+            },
+            "development": {
+              "browserTarget": "basico:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "basico:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/basico/src/**/*.ts",
+              "apps/basico/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/basico"
+          ],
+          "options": {
+            "jestConfig": "apps/basico/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "basico-e2e": {
+      "root": "apps/basico-e2e",
+      "sourceRoot": "apps/basico-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/basico-e2e/cypress.json",
+            "tsConfig": "apps/basico-e2e/tsconfig.e2e.json",
+            "devServerTarget": "basico:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "basico:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/basico-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }

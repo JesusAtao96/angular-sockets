@@ -8,7 +8,7 @@ import Server from './app/config/server';
 import { router } from './app/routes/router';
 import * as cors from 'cors';
 
-const server = new Server();
+const server = Server.instance;
 server.app.use(express.urlencoded({ extended: true }));
 server.app.use(express.json());
 

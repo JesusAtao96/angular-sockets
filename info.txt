@@ -47,4 +47,5 @@ nx run dc-ui-e2e:e2e
 
 
 --------------------------------
-nx serve socket-serve-01
+nx serve basico
+nx serve socket-server-01

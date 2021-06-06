@@ -21,6 +21,13 @@
   "projects": {
     "socket-server-01": {
       "tags": []
+    },
+    "basico": {
+      "tags": []
+    },
+    "basico-e2e": {
+      "tags": [],
+      "implicitDependencies": ["basico"]
     }
   }
 }
