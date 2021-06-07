@@ -1,0 +1,14 @@
+<h1>Usuarios</h1>
+<hr>
+
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let usuario of usuariosActivosObs | async">
+    {{ usuario.nombre }}
+    <span class="badge bg-primary">{{ usuario.sala }}</span>
+    <br>
+    <span class="badge bg-info">{{ usuario.id }}</span>
+    <br>
+    <button type="button" class="btn btn-primary btn-sm mr-2" (click)="cambiarPagina(usuario, 'pagina-1')">Mostrar página 1</button>
+    <button type="button" class="btn btn-secondary btn-sm" (click)="cambiarPagina(usuario, 'pagina-2')">Ir Mostrar 2</button>
+  </li>
+</ul>
