@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  wsUrl: 'http://localhost:5000'
+  // wsUrl: 'http://localhost:5000'
+  wsUrl: 'https://socket-basico-lvl.herokuapp.com/'
 };
 
 /*
